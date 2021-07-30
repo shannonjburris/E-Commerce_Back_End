@@ -11,10 +11,11 @@ Product.init(
   {
     // define columns
     id: {
-      type: DataTypes.Integer 
+      type: DataTypes.INTEGER,
+      primaryKey: true
     },
     product_name: {
-      type: Datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false
     },
     price: {
