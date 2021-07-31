@@ -22,22 +22,21 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
-  try{
-    const trData = await Tag.findByPK(req.params.id, {
-    include: [
-      { model: Product},
-    ]
-  })
+  try {
+    const trData = await Tag.findByPk(req.params.id, {
+      include: [{model: Product}]
+    })
 
-  if(!trData){
-    res.status(404).json({ message: "no id matches"});
-    return; 
+    if(!trData){
+      res.status(404).json({ message: "No id matches" });
+      return;
+    }
+
+    res.status(200).json(trData);
+
+  }catch{
+    res.status(500).json(err);
   }
-
-  res.status(200).json(productData);
-} catch (err) {
-  res.status(500).json(err);
-}
 });
   
   
@@ -74,7 +73,6 @@ res.status(200).json(tagData);
 
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
-  router.delete('/:id', (req, res) => {
     // delete one product by its `id` value
       try {
         const trData = await Tag.destroy({
@@ -94,6 +92,6 @@ router.delete('/:id', async (req, res) => {
       }
     });
   
-});
+
 
 module.exports = router;

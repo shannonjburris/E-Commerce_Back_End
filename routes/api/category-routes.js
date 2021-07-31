@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Product, ProductTag } = require('../../models');
+const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         { model: Product}
       ]
     });
-    res.status(200).json(productData);
+    res.status(200).json(catData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const catData = await Category.create({id: req.body});
+    const catData = await Category.create({id: req.body.id});
     res.status(200).json(catData);
   } catch (err) {
     res.status(400).json(err);
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
   try {
     const catData = await Category.update(
       {
-      cat_name: req.body.category_name
+        category_name: req.body.category_name
 },
 {
   where: {

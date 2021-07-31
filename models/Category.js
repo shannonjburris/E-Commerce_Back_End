@@ -9,10 +9,9 @@ Category.init(
     // define columns add more constrints 
     id: {
       type: DataTypes.INTEGER,
-      PrimaryKey: true,
-      AllowNull: false,
-      autoIncrement: true,
-
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true
     },
     category_name: {
       type: DataTypes.STRING,
